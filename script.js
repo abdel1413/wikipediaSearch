@@ -40,35 +40,18 @@ const fetchArticles = async ()=>{
   let max = 10
 const randomRange = (Math.random() + 1 ) ;
 console.log('random', randomRange)
-  const url = `https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=${inputValue.value}&origin=*`
-  //`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=javascript&format=json&origin=*`
+  const url = `https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=${inputValue.value}&origin=*`
+
   const response = await fetch(url)
-  
   const data = await response.json()
-  console.log('length',data)
-  
   const queries = data.query;
   const pages = queries.pages
- 
   const pagesKeys = Object.keys(pages)
   let  responseContent =``
    pagesKeys.forEach(key => {
-     console.log('ke', key)
-       console.log("pages", pages)
-   // console.log(pages[key].thumbnail)
-    
-
-
      if( pages[key].extract&&pages[key].thumbnail){
-      //console.log(pages[key].thumbnail.source)
       const title = pages[key].title;
-      
-      
-      
      const extract = pages[key].extract
-     
-   
-
        responseContent += `<a href="https://en.wikipedia.org/?curid=${key}" target="_blank">
          <li class='list'>
           <h1 class='title'>${title}</h1>
@@ -76,24 +59,12 @@ console.log('random', randomRange)
          </li>
        </a>`
 
-
       }else{
        return;
-      }
-     
-       
-   
- 
-       
-   }
-  
-  )
-  
-// console.log('res cont', resultContent)
+      }   
+   })
  resultContent.innerHTML = responseContent
-
 }
-
 
  inputValue.addEventListener("keydown", (event)=>{
    if(event.key ==="Enter"){
@@ -101,10 +72,7 @@ console.log('random', randomRange)
      inputValue.value =''
      event.preventDefault()
  }
-
  })
-
-
  window.showInputField = showInputField
 
 

@@ -69,18 +69,28 @@ body{
 
 a{
     text-decoration: none;
+    
 }
 
 ul{
-    margin: 0;
-    padding: 0;
+    margin-right:  auto;
+    margin-left: auto;
+    padding: 10px;
+    width: 80%;
+    
+
 }
 
 .list{
-    border: 2px solid green;
-    margin: 20px 0;
+    border:none;
+
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 7px;
     list-style: none;
-    color: white;
-    
+   background-color: aliceblue;
+   color: black;
+    box-shadow: 5px 2px #d6d6e3;
+    padding-left: 10px;
 }
 
