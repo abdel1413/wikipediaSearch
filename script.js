@@ -9,7 +9,7 @@
 
 // // Show input when search icon is clicked
 function showInputField() {
-  console.log(displayInput)
+
   fasSearch.classList.add('hide');
   setTimeout(() => {
     fasSearch.classList.add('hidden')
@@ -17,12 +17,15 @@ function showInputField() {
     requestAnimationFrame(()=>{
       displayInput.classList.add("show")
     })
-  }, 300);
+  }, 400);
 }
 
 // // Hide input when delete button is clicked
 deleteBtn.addEventListener('click', () => {
      inputValue.value =''
+     resultContent.innerHTML = ''
+     infoText.style.display ='block'
+     resultContent.classList.remove("ulfullHeight")
      displayInput.classList.remove('show')
      setTimeout(() => {
        displayInput.classList.add("hidden")
@@ -30,45 +33,44 @@ deleteBtn.addEventListener('click', () => {
        requestAnimationFrame(()=>{
         fasSearch.classList.remove('hide')
        })
-     }, 300);
+     }, 400);
 });
 
-
 const fetchArticles = async ()=>{
-  console.log('val',inputValue.value)
-  let min = 0;
-  let max = 10
-const randomRange = (Math.random() + 1 ) ;
-console.log('random', randomRange)
-  const url = `https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=${inputValue.value}&origin=*`
-
+  const url = `https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=${inputValue.value}&origin=*`
   const response = await fetch(url)
   const data = await response.json()
   const queries = data.query;
   const pages = queries.pages
   const pagesKeys = Object.keys(pages)
-  let  responseContent =``
-   pagesKeys.forEach(key => {
-     if( pages[key].extract&&pages[key].thumbnail){
-      const title = pages[key].title;
-     const extract = pages[key].extract
-       responseContent += `<a href="https://en.wikipedia.org/?curid=${key}" target="_blank">
-         <li class='list'>
-          <h1 class='title'>${title}</h1>
-          <p class='extract'>${extract}</p>
-         </li>
-       </a>`
+   
+  let  responseContent =[]
 
+   pagesKeys.forEach((key,i) => {
+     if( pages[key].extract&&pages[key].thumbnail){
+        const title = pages[key].title;
+       const extract = pages[key].extract
+          responseContent.push( `<a href="https://en.wikipedia.org/?curid=${key}" target="_blank">
+            <li class='list'>
+             <h2 class='title'>${title}</h2>
+             <p class='extract'>${extract}</p>
+            </li>
+          </a>`)
       }else{
        return;
       }   
    })
- resultContent.innerHTML = responseContent
+
+     for(let i = 0 ; i< 10;i++){
+        resultContent.innerHTML += responseContent[i] 
+        resultContent.classList.add('ulfullHeight')
+     }
 }
 
  inputValue.addEventListener("keydown", (event)=>{
    if(event.key ==="Enter"){
      fetchArticles()
+     infoText.style.display= 'none'
      inputValue.value =''
      event.preventDefault()
  }

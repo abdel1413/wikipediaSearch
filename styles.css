@@ -1,6 +1,11 @@
 body{
    color: white;
   background-color: #0A2B40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height:100vh;
 }
 
  .full-height{
@@ -9,8 +14,10 @@ body{
     align-items: center;
     justify-content: center;
     height: 100vh;
+   
 
 } 
+
 
 .fas{
     font-size: 2.5rem;
@@ -71,26 +78,49 @@ a{
     text-decoration: none;
     
 }
+a:hover{
+    border-left: 2px solid red;
+}
 
 ul{
     margin-right:  auto;
     margin-left: auto;
-    padding: 10px;
+   font-size: .9rem;
+    padding: 0px 10px;
     width: 80%;
-    
+   
+}
 
+ .ulfullHeight{
+     height: 80vh;
+ }
+h2{
+    margin-bottom: 10px;
+   font-size: 1.2rem; 
+    
 }
 
 .list{
-    border:none;
-
+    border:3px solid aliceblue;
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 7px;
+    border-radius: 15px;
     list-style: none;
    background-color: aliceblue;
    color: black;
     box-shadow: 5px 2px #d6d6e3;
-    padding-left: 10px;
+    padding: 0px 20px;
+
+}
+.list:hover{
+    border-left: 3px solid #D86F32;
 }
 
+p{
+    margin-top: 0;
+}
+
+.result-content{
+    margin-top: 0;
+}
