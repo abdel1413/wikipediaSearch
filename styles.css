@@ -76,17 +76,14 @@ body{
   border: 3px solid #D86F32;
   border-radius: 15px;
 }
-
 input{
     background-color: #0A2B40; ;
     outline-color: none;
     border: 2px solid  #0A2B40;
-
 }
 input{
     outline: none;
 }
-
  .fas{
     font-size: 2.5rem;
     color: #D86F32;
