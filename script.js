@@ -5,36 +5,11 @@
  const submit = document.querySelector("#submit-form")
  const infoText = document.querySelector(".info-text")
  const resultContent = document.querySelector(".result-content")
-
-
-// // Show input when search icon is clicked
-function showInputField() {
-
-  fasSearch.classList.add('hide');
-  setTimeout(() => {
-    fasSearch.classList.add('hidden')
-    displayInput.classList.remove("hidden")
-    requestAnimationFrame(()=>{
-      displayInput.classList.add("show")
-    })
-  }, 400);
-}
-
-// // Hide input when delete button is clicked
-deleteBtn.addEventListener('click', () => {
-     inputValue.value =''
-     resultContent.innerHTML = ''
-     infoText.style.display ='block'
-     resultContent.classList.remove("ulfullHeight")
-     displayInput.classList.remove('show')
-     setTimeout(() => {
-       displayInput.classList.add("hidden")
-       fasSearch.classList.remove('hidden')
-       requestAnimationFrame(()=>{
-        fasSearch.classList.remove('hide')
-       })
-     }, 400);
-});
+ const inputIconWrapper = document.querySelector(".input-icon-wrapper")
+ const searchIcon = document.querySelector("#search-icon")
+const searchWrapper = document.getElementById('searchWrapper');
+const openSearch = document.getElementById('openSearch');
+const closeSearch = document.getElementById('closeSearch');
 
 const fetchArticles = async ()=>{
   const url = `https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=&gsrlimit=20&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=${inputValue.value}&origin=*`
@@ -43,9 +18,7 @@ const fetchArticles = async ()=>{
   const queries = data.query;
   const pages = queries.pages
   const pagesKeys = Object.keys(pages)
-   
   let  responseContent =[]
-
    pagesKeys.forEach((key,i) => {
      if( pages[key].extract&&pages[key].thumbnail){
         const title = pages[key].title;
@@ -60,13 +33,11 @@ const fetchArticles = async ()=>{
        return;
       }   
    })
-
      for(let i = 0 ; i< 10;i++){
         resultContent.innerHTML += responseContent[i] 
         resultContent.classList.add('ulfullHeight')
      }
 }
-
  inputValue.addEventListener("keydown", (event)=>{
    if(event.key ==="Enter"){
      fetchArticles()
@@ -75,6 +46,18 @@ const fetchArticles = async ()=>{
      event.preventDefault()
  }
  })
- window.showInputField = showInputField
+ 
+openSearch.addEventListener('click', () => {
+  searchWrapper.classList.add('active');
+});
+
+closeSearch.addEventListener('click', () => {
+  searchWrapper.classList.remove('active');
+  inputValue.value =''
+     resultContent.innerHTML = ''
+     infoText.style.display ='block'
+     resultContent.classList.remove("ulfullHeight")
+});
+
 
 

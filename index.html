@@ -5,24 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/styles.css">
-    <title>wikipedia search</title>
-    
+    <title>wikipedia search</title> 
 </head>
 <body>
     <div class="full-height">
-    <h1>Click here for a random article</h1>
-    <!-- <form action="" id="submit-form" > -->
-    <div class="display-input-field hidden" id="input-container">
-        <input type="text" class="input-value input" />
-        <button class='delete display-fas-search' id="delete-btn">x</button>
+        <h1>Click here for a random article</h1>
+        <div class="search-container">
+        <div class="search-wrapper" id="searchWrapper">
+        <i class="fas fa-search search-icon" id="openSearch"></i> 
+        <div class="search-input-wrapper " id="inputWrapper">
+            <input type="text" class="input-value input" />
+            <button class="close-icon" id="closeSearch">x</button>
+        </div>
+        </div>
+        </div>
+        <p class="info-text">Click Icon to search</p>
+        <div>
+            <ul class="result-content"></ul>
+        </div>
     </div>
-    <!-- </form> -->
-    <i class="fas fa-search" id="search-icon" onclick="showInputField()"></i> 
-<p class="info-text">Click Icon to search</p>
-   <div>
-    <ul class="result-content"></ul>
-   </div>
-</div>
 </body>
 <script type="module" src="script.js"></script>
 </html>
