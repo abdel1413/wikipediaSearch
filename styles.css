@@ -94,9 +94,9 @@ a{
     text-decoration: none;
     
 }
-a:hover{
-    border-left: 2px solid red;
-}
+/* a:hover{
+    border-left: 1px solid red;
+} */
 ul{
     margin-right:  auto;
     margin-left: auto;
@@ -124,7 +124,7 @@ h2{
    color: black;
     box-shadow: 5px 2px #d6d6e3;
     padding: 0px 20px;
-
+    border-left: 3px solid black;
 }
 .list:hover{
     border-left: 3px solid #D86F32;
